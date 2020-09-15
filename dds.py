@@ -1148,13 +1148,11 @@ class Home(threading.Thread):
                 except:
                     try:
                         s.close()
-                        error += 1
                     except:
                         pass
             except:
                 try:
                     s.close()
-                    error += 1
                 except:
                     pass
 
