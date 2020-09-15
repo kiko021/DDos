@@ -1144,10 +1144,19 @@ class Home(threading.Thread):
                 try:
                     for y in range(multiple):
                         s.send(str.encode(request))
+                        req_code += 1
                 except:
-                    s.close()
+                    try:
+                        s.close()
+                        error += 1
+                    except:
+                        pass
             except:
-                s.close()
+                try:
+                    s.close()
+                    error += 1
+                except:
+                    pass
 
 class JSv1(threading.Thread):
     def __init__(self, counter):
